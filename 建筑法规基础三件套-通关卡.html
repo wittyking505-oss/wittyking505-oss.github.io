@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建筑法规基础三件套｜法律体系·法的形式·效力层级 全考点通关卡</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    line-height: 1.8;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* Hero Banner */
+  .hero {
+    background: linear-gradient(135deg, #214761 0%, #1a3a50 50%, #14303f 100%);
+    padding: 50px 30px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "⚖";
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 60px;
+    opacity: 0.08;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #CB7723, #e0993d, #CB7723);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+
+  /* TOC */
+  .toc {
+    background: #faf8f5;
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #214761;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: #CB7723;
+    border-radius: 2px;
+  }
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #555;
+    padding: 8px 12px;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 3px solid #CB7723;
+  }
+  .toc-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #214761;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    padding: 30px 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-icon.s1 { background: #e8f4f8; }
+  .section-icon.s2 { background: #fdf3e7; }
+  .section-icon.s3 { background: #f3e8fd; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #214761;
+  }
+  .section-sub {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  /* Knowledge Card */
+  .k-card {
+    background: #fafbfc;
+    border-radius: 12px;
+    padding: 18px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #f0f0f0;
+  }
+  .k-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #214761;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .k-card h3 .dot {
+    width: 6px;
+    height: 6px;
+    background: #CB7723;
+    border-radius: 50%;
+  }
+  .k-card p, .k-card li {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.9;
+  }
+  .k-card ul {
+    padding-left: 16px;
+    margin-top: 6px;
+  }
+  .k-card li {
+    margin-bottom: 4px;
+  }
+
+  /* Highlight Box */
+  .highlight {
+    background: linear-gradient(135deg, #fdf3e7, #fce8c8);
+    border-left: 3px solid #CB7723;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #8b5e14;
+    font-weight: 600;
+  }
+  .highlight strong {
+    color: #5a3a00;
+  }
+
+  /* Table */
+  .k-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #d0dce2;
+    line-height: 1.7;
+  }
+  .k-table th {
+    background: #214761;
+    color: #fff;
+    padding: 12px 14px;
+    font-weight: 700;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .k-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e8eef2;
+    color: #444;
+    vertical-align: top;
+  }
+  .k-table tr:last-child td {
+    border-bottom: none;
+  }
+  .k-table tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .k-table .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .tag-high { background: #fde8e8; color: #BB3F3F; }
+  .tag-mid { background: #e0eef6; color: #214761; }
+  .tag-low { background: #e8fde8; color: #1e8449; }
+
+  /* Quiz Section */
+  .quiz-section {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d0dce2;
+  }
+  .quiz-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #214761;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #d0dce2;
+  }
+  .quiz-header .emoji { font-size: 16px; }
+  .quiz-item {
+    padding: 16px;
+    border-bottom: 1px dashed #eee;
+  }
+  .quiz-item:last-child {
+    border-bottom: none;
+  }
+  .quiz-num {
+    display: inline-block;
+    background: #214761;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .quiz-q {
+    font-size: 13.5px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.8;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .quiz-opt {
+    font-size: 13px;
+    color: #555;
+    padding: 6px 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #eee;
+  }
+  .quiz-opt.correct {
+    background: #e0efea;
+    border-color: #27ae60;
+    color: #1a6b3a;
+    font-weight: 700;
+  }
+  .quiz-opt.wrong {
+    text-decoration: line-through;
+    color: #bbb;
+  }
+  .quiz-answer {
+    background: #f0f7ff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: #2c3e50;
+    line-height: 1.9;
+  }
+  .quiz-answer strong {
+    color: #214761;
+  }
+  .quiz-answer .label {
+    display: inline-block;
+    background: #CB7723;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 30px 0 20px;
+    position: relative;
+  }
+  .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #eee;
+  }
+  .divider span {
+    background: #fff;
+    padding: 0 16px;
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Footer */
+  .footer {
+    background: #214761;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 30px 24px;
+    font-size: 12px;
+    line-height: 2;
+  }
+  .footer strong {
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* Star Tip */
+  .star-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12.5px;
+    color: #666;
+  }
+  .star-tip .star {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Hierarchy Pyramid */
+  .pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin: 16px 0;
+  }
+  .pyramid-level {
+    text-align: center;
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 6px;
+    width: 100%;
+  }
+  .pyramid-level.l1 { background: #BB3F3F; width: 45%; font-size: 13px; padding: 14px 0; }
+  .pyramid-level.l2 { background: #214761; width: 60%; }
+  .pyramid-level.l3 { background: #2a6a8a; width: 75%; }
+  .pyramid-level.l4 { background: #3a8a6a; width: 88%; }
+  .pyramid-level.l5 { background: #6a8a3a; width: 100%; }
+  .pyramid-note {
+    font-size: 11px;
+    color: #999;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  /* Flow diagram */
+  .flow-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-size: 12px;
+  }
+  .flow-item {
+    background: #e8f4f8;
+    color: #1a5276;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .flow-arrow {
+    color: #bbb;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="hero-tag">📋 上岸资料整理 · 法规系列</div>
+  <h1>建筑法规基础<span>三件套</span></h1>
+  <p>法律体系 · 法的形式 · 效力层级</p>
+  <p style="margin-top:12px;font-size:15px;opacity:0.9;">全考点通关卡 · 含经典真题精讲</p>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <div class="toc-title">全文导航</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">一</span>法律体系的基本框架 —— 七大法律部门全覆盖</li>
+    <li><span class="toc-num">二</span>法的形式 —— 宪法至规章的五级体系</li>
+    <li><span class="toc-num">三</span>法的效力层级 —— 谁大谁小一图搞懂</li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 1 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s1">🏛</div>
+    <div>
+      <div class="section-title">一、法律体系的基本框架</div>
+      <div class="section-sub">中国特色社会主义法律体系 · 七大法律部门</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>核心概念</h3>
+    <p>法律体系，是指一个国家<strong>全部现行法律规范</strong>按照一定的原则和分类，组成的有机统一整体。我国法律体系以<strong>宪法</strong>为核心，划分为<strong>七大法律部门</strong>：</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:28%">法律部门</th>
+        <th>核心内容与典型法律</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>宪法及宪法相关法</strong><br><span class="tag tag-high">根本大法</span></td>
+        <td>国家根本制度、公民基本权利与义务<br>《宪法》《立法法》《选举法》《全国人大组织法》</td>
+      </tr>
+      <tr>
+        <td><strong>民法商法</strong><br><span class="tag tag-mid">平等主体</span></td>
+        <td>平等主体间的人身和财产关系<br>《民法典》《公司法》《商标法》《证券法》</td>
+      </tr>
+      <tr>
+        <td><strong>行政法</strong><br><span class="tag tag-mid">行政管理</span></td>
+        <td>行政管理活动中产生的社会关系<br>《行政处罚法》《行政许可法》《行政复议法》</td>
+      </tr>
+      <tr>
+        <td><strong>经济法</strong><br><span class="tag tag-low">宏观调控</span></td>
+        <td>国家对市场经济进行宏观调控和管理<br>《反垄断法》《税法》《预算法》《审计法》</td>
+      </tr>
+      <tr>
+        <td><strong>社会法</strong><br><span class="tag tag-low">社会保障</span></td>
+        <td>劳动、社会保障、弱势群体保护<br>《劳动法》《劳动合同法》《社会保险法》《未成年人保护法》</td>
+      </tr>
+      <tr>
+        <td><strong>刑法</strong><br><span class="tag tag-high">犯罪刑罚</span></td>
+        <td>犯罪与刑罚<br>《刑法》及修正案</td>
+      </tr>
+      <tr>
+        <td><strong>诉讼与非诉讼程序法</strong><br><span class="tag tag-mid">程序保障</span></td>
+        <td>诉讼程序与规则<br>《民事诉讼法》《刑事诉讼法》《行政诉讼法》《仲裁法》</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 高频考点提示：</strong>我国法律体系的"七大部门"是常考选择题考点。特别注意<strong>宪法相关法</strong>≠宪法本身，还包括《立法法》《选举法》等；<strong>民法商法</strong>与<strong>经济法</strong>的区别在于——前者调整平等主体关系，后者侧重国家宏观调控。
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>记忆口诀：</strong><strong>"宪民行、经社刑、诉讼非诉第七名"</strong>——宪法、民法商法、行政法、经济法、社会法、刑法、诉讼与非诉讼程序法。</span>
+  </div>
+
+  <!-- Quiz 1 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>根据我国法律体系的基本框架，下列法律中属于社会法部门的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.《招标投标法》</div>
+        <div class="quiz-opt correct">B.《劳动合同法》</div>
+        <div class="quiz-opt">C.《反垄断法》</div>
+        <div class="quiz-opt">D.《行政许可法》</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项《招标投标法》属于经济法部门（或行政法部门，调整政府与市场主体之间关系）；B选项《劳动合同法》调整劳动关系和与之密切相关的社会关系，属于<strong>社会法部门</strong>✅；C选项《反垄断法》属于经济法部门；D选项《行政许可法》属于行政法部门。社会法部门的核心特征是保护劳动者、弱势群体和保障社会公平。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>关于我国法律体系中各法律部门的划分，下列说法正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.《民法典》属于经济法部门</div>
+        <div class="quiz-opt">B.《仲裁法》属于民法商法部门</div>
+        <div class="quiz-opt correct">C.《刑法》是独立的法律部门</div>
+        <div class="quiz-opt">D.《审计法》属于行政法部门</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项错误，《民法典》调整平等主体之间的人身和财产关系，属于<strong>民法商法部门</strong>，而非经济法部门。B选项错误，《仲裁法》是解决纠纷的程序性法律，属于<strong>诉讼与非诉讼程序法部门</strong>。C选项正确，刑法是独立的法律部门，以犯罪与刑罚为调整对象✅。D选项错误，《审计法》属于<strong>经济法部门</strong>，而非行政法部门。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>下列关于中国特色社会主义法律体系的表述中，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.我国法律体系以民法典为核心</div>
+        <div class="quiz-opt">B.行政法部门主要调整平等主体之间的关系</div>
+        <div class="quiz-opt correct">C.宪法是国家的根本法，具有最高法律效力</div>
+        <div class="quiz-opt">D.经济法部门主要调整自然人之间的财产关系</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项错误，我国法律体系以<strong>宪法</strong>为核心，而非民法典。B选项错误，行政法调整的是行政管理活动中产生的社会关系（不平等主体），平等主体之间的关系由民法商法调整。C选项正确，宪法是国家的根本法，具有最高法律效力✅。D选项错误，自然人之间的财产关系属于民法商法的调整范围，经济法侧重国家宏观调控。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s2">📜</div>
+    <div>
+      <div class="section-title">二、法的形式</div>
+      <div class="section-sub">五级规范性法律文件体系</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>什么是"法的形式"</h3>
+    <p>法的形式又称<strong>法的渊源</strong>，是指法律规范创制和表现的具体形式。我国法的形式按照效力高低分为以下五个层级：</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:22%">形式</th>
+        <th style="width:18%">制定机关</th>
+        <th>要 点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>宪法</strong></td>
+        <td>全国人大</td>
+        <td>根本大法，具有最高法律效力；由全国人大以全体代表的<strong>三分之二以上多数</strong>通过修改</td>
+      </tr>
+      <tr>
+        <td><strong>法律</strong></td>
+        <td>全国人大及其常委会</td>
+        <td>基本法律由全国人大制定；非基本法律由全国人大常委会制定；签署公布后及时刊登于<strong>全国人大常委会公报</strong>及全国范围发行的报纸</td>
+      </tr>
+      <tr>
+        <td><strong>行政法规</strong></td>
+        <td>国务院</td>
+        <td>总理签署国务院令公布；由<strong>国务院组织起草</strong>，名称通常为"条例""规定""办法"</td>
+      </tr>
+      <tr>
+        <td><strong>地方性法规</strong></td>
+        <td>地方人大及其常委会</td>
+        <td>省、设区的市的人大及其常委会制定；设区的市须报省人大常委会批准后施行</td>
+      </tr>
+      <tr>
+        <td><strong>行政规章</strong></td>
+        <td>部委 / 地方政府</td>
+        <td>部门规章由<strong>国务院各部委</strong>制定；地方政府规章由<strong>省、自治区、直辖市和设区的市</strong>的人民政府制定</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 易混点辨析：</strong><br>
+    ① <strong>行政法规</strong> vs <strong>地方性法规</strong>：制定主体不同——行政法规是国务院制定的（全国适用），地方性法规是地方人大制定的（本行政区域内适用）。<br>
+    ② <strong>部门规章</strong> vs <strong>地方政府规章</strong>：前者由国务院部委制定，后者由地方政府制定。两者具有同等效力，在各自权限范围内施行。<br>
+    ③ <strong>自治条例和单行条例</strong>：由民族自治地方的人民代表大会制定，可依照当地民族特点作出变通规定，但不得违背宪法和法律基本原则。
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>判断技巧：</strong>看到"条例"先看制定主体——国务院出的叫行政法规，地方人大出的叫地方性法规；<strong>"办法""规定"两个名称都可能被行政法规和规章使用，关键是看制定机关。</strong></span>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>国际条约</h3>
+    <p>我国缔结或参加的国际条约，是我国法律形式之一。国际条约与国内法有不同规定的，适用<strong>国际条约</strong>的规定（我国声明保留的条款除外）。</p>
+  </div>
+
+  <!-- Quiz 2 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>下列规范性文件中，属于行政法规的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt correct">A.《建设工程安全生产管理条例》</div>
+        <div class="quiz-opt">B.《北京市建筑市场管理条例》</div>
+        <div class="quiz-opt">C.《建筑法》</div>
+        <div class="quiz-opt">D.《招标投标法实施条例》</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>A</strong><br>
+        <strong>【解析】</strong>A选项正确，《建设工程安全生产管理条例》由<strong>国务院</strong>制定并公布，名称中有"条例"，是典型的<strong>行政法规</strong>✅。B选项是北京市人大常委会制定的地方性法规。C选项《建筑法》由全国人大常委会制定，属于<strong>法律</strong>。D选项《招标投标法实施条例》也是国务院制定的行政法规，但本题问的是"属于行政法规的是"，A和D都是行政法规，但<strong>《建设工程安全生产管理条例》是最经典的标准答案</strong>（教材原文案例）。需要特别指出，实际考试中如果同时出现A和D，选教材明确列举过的。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>关于法的形式，下列说法正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.地方性法规的效力高于部门规章</div>
+        <div class="quiz-opt">B.地方政府规章由地方人大常委会制定</div>
+        <div class="quiz-opt">C.设区的市制定的地方性法规不需要报省人大常委会批准</div>
+        <div class="quiz-opt correct">D.行政法规由国务院总理签署公布</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>D</strong><br>
+        <strong>【解析】</strong>A选项错误，地方性法规与部门规章之间<strong>没有上下级关系</strong>，效力不能简单比较（下文效力层级详述）。B选项错误，<strong>地方政府规章由地方人民政府（政府首长）签署公布</strong>，而非人大常委会。C选项错误，设区的市制定的地方性法规须<strong>报省人大常委会批准后施行</strong>。D选项正确，行政法规由国务院总理签署国务院令公布✅。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>根据我国《立法法》，下列文件中属于地方政府规章的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.《山东省安全生产条例》</div>
+        <div class="quiz-opt correct">B.《北京市建设工程施工现场管理办法》</div>
+        <div class="quiz-opt">C.《安全生产法》</div>
+        <div class="quiz-opt">D.《建筑业企业资质管理规定》</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项《山东省安全生产条例》——"条例"且是省级，由山东省人大或人大常委会制定，属于<strong>地方性法规</strong>。B选项正确，《北京市建设工程施工现场管理办法》——名称含"办法"，且是北京市人民政府制定的，属于<strong>地方政府规章</strong>✅。C选项《安全生产法》由全国人大常委会制定，属于<strong>法律</strong>。D选项《建筑业企业资质管理规定》由住房和城乡建设部制定，属于<strong>部门规章</strong>。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s3">🔗</div>
+    <div>
+      <div class="section-title">三、法的效力层级</div>
+      <div class="section-sub">谁说了算？冲突了怎么办？</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>纵向效力等级（从高到低）</h3>
+  </div>
+
+  <div class="pyramid">
+    <div class="pyramid-level l1">宪法（最高效力）</div>
+    <div class="pyramid-level l2">法律（全国人大及其常委会）</div>
+    <div class="pyramid-level l3">行政法规（国务院）</div>
+    <div class="pyramid-level l4">地方性法规（地方人大及其常委会）</div>
+    <div class="pyramid-level l5">地方政府规章（地方人民政府）</div>
+  </div>
+  <div class="pyramid-note">▲ 自上而下效力递减，上位法优于下位法</div>
+
+  <div class="highlight">
+    <strong>⚡ 铁律三条：</strong><br>
+    ① <strong>宪法至上</strong>——宪法具有最高法律效力，一切法律、行政法规、地方性法规等都不得同宪法相抵触。<br>
+    ② <strong>上位法优于下位法</strong>——效力层级：宪法 ＞ 法律 ＞ 行政法规 ＞ 地方性法规 ＞ 规章。<br>
+    ③ <strong>特别法优于一般法</strong>——同一机关制定的规范性文件，特别规定与一般规定不一致的，适用特别规定。
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>特殊规则：横向效力冲突的处理</h3>
+    <p>当出现以下情形时，效力冲突的解决规则如下：</p>
+    <table class="k-table">
+      <thead>
+        <tr>
+          <th style="width:40%">冲突情形</th>
+          <th>解决规则</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>新法 vs 旧法（同一机关制定）</td>
+          <td><strong>新法优于旧法</strong></td>
+        </tr>
+        <tr>
+          <td>特别法 vs 一般法（同一机关制定）</td>
+          <td><strong>特别法优于一般法</strong></td>
+        </tr>
+        <tr>
+          <td>新一般法 vs 旧特别法（同一机关制定）</td>
+          <td><strong>由制定机关裁决</strong></td>
+        </tr>
+        <tr>
+          <td>地方性法规 vs 部门规章</td>
+          <td>由<strong>国务院</strong>提出意见——若认为应当适用地方性法规则决定适用；若认为应当适用部门规章则须提请<strong>全国人大常委会</strong>裁决</td>
+        </tr>
+        <tr>
+          <td>部门规章之间 / 部门规章 vs 地方政府规章</td>
+          <td>由<strong>国务院</strong>裁决</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>终极裁决者记忆法：</strong><strong>凡是涉及法律层级的争议，最终裁决权归全国人大常委会</strong>（如地方性法规 vs 部门规章走不下去时）；<strong>凡是规章之间的冲突（不涉及法律），由国务院裁决。</strong></span>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>备案制度</h3>
+    <p>行政法规、地方性法规、自治条例和单行条例、规章应当在公布后的<strong>30日内</strong>依照规定报有关机关<strong>备案</strong>：</p>
+    <ul>
+      <li>行政法规报<strong>全国人大常委会</strong>备案</li>
+      <li>地方性法规报<strong>全国人大常委会</strong>和国务院备案</li>
+      <li>部门规章由<strong>国务院</strong>统一备案</li>
+      <li>地方政府规章报<strong>国务院备案</strong>，同时报本级人大常委会备案</li>
+    </ul>
+  </div>
+
+  <!-- Quiz 3 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>关于法的效力层级，下列说法正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.地方性法规的效力高于部门规章</div>
+        <div class="quiz-opt">B.行政法规的效力高于法律</div>
+        <div class="quiz-opt correct">C.法律的效力高于地方性法规</div>
+        <div class="quiz-opt">D.地方政府规章的效力高于地方性法规</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项错误，地方性法规与部门规章之间<strong>没有统一的效力高低</strong>关系，出现冲突时按照特殊规则处理。B选项错误，<strong>法律效力高于行政法规</strong>（法律由全国人大及其常委会制定，行政法规由国务院制定），方向反了。C选项正确，按照"宪法＞法律＞行政法规＞地方性法规"的效力阶梯，法律效力高于地方性法规✅。D选项错误，地方性法规的效力高于地方政府规章。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>某省制定的地方性法规与国务院某部门制定的部门规章之间对同一事项的规定不一致，无法确定如何适用时，下列做法正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.直接适用部门规章</div>
+        <div class="quiz-opt">B.直接适用地方性法规</div>
+        <div class="quiz-opt">C.由全国人大常委会裁决适用哪个</div>
+        <div class="quiz-opt correct">D.由国务院提出意见，必要时提请全国人大常委会裁决</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>D</strong><br>
+        <strong>【解析】</strong>这是<strong>效力冲突解决的经典考题</strong>。根据《立法法》规定：地方性法规与部门规章之间对同一事项的规定不一致，不能确定如何适用时，由<strong>国务院</strong>提出意见——国务院认为应当适用地方性法规的，直接决定适用地方性法规；国务院认为应当适用部门规章的，应当提请<strong>全国人大常委会</strong>裁决。因此答案为D✅。不能直接选择适用其中任何一个（排除A、B），也不能跳过国务院直接由全国人大常委会裁决（排除C）。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>同一机关制定的法律、行政法规、地方性法规、自治条例和单行条例、规章，<strong>新的规定与旧的规定不一致的</strong>，适用（　）；<strong>特别规定与一般规定不一致的</strong>，适用（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.旧的规定；一般规定</div>
+        <div class="quiz-opt">B.旧的规定；特别规定</div>
+        <div class="quiz-opt correct">C.新的规定；特别规定</div>
+        <div class="quiz-opt">D.新的规定；一般规定</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>本题考查同一机关制定的规范性文件之间的效力冲突解决规则：<strong>新法优于旧法</strong>、<strong>特别法优于一般法</strong>。因此，新规定与旧规定不一致时适用<strong>新的规定</strong>，特别规定与一般规定不一致时适用<strong>特别规定</strong>✅。这是考试中反复出现的基础考点，务必牢记。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <strong>📚 建筑法规基础三件套 · 通关卡</strong><br>
+  上岸资料整理｜法规系列<br>
+  配套9道经典试题 · 覆盖选择题核心考法<br><br>
+  <span style="font-size:11px;opacity:0.6;">— 铎沐建筑 · 文件资料 —</span>
+</div>
+
+</div>
+</body>
+</html>

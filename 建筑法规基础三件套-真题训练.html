@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建筑法规基础三件套 · 真题强化训练</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:#f4f6f8;color:#333;line-height:1.7}
+.container{max-width:680px;margin:0 auto;background:#fff;min-height:100vh}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#214761 0%,#1a3a50 50%,#132d42 100%);padding:40px 28px 36px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 70%,rgba(203,119,35,0.08) 0%,transparent 50%);pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(203,119,35,0.2);border:1px solid rgba(203,119,35,0.4);color:#e8c78a;font-size:12px;padding:4px 14px;border-radius:20px;letter-spacing:1px;margin-bottom:14px}
+.hero h1{font-size:26px;font-weight:700;letter-spacing:2px;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,#e8c78a 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:14px;color:rgba(255,255,255,0.7);margin-top:6px}
+
+/* ===== 总分面板 ===== */
+.total-panel{background:#f8f9fb;border-bottom:1px solid #e8ecf0;padding:16px 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.total-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.total-label{font-size:13px;color:#888;font-weight:500}
+.total-label strong{color:#214761;font-size:15px}
+.total-big{font-size:28px;font-weight:700;color:#214761;letter-spacing:1px}
+.total-big span{font-size:14px;font-weight:400;color:#999}
+.progress-bar{width:100%;height:8px;background:#e8ecf0;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;width:0%;border-radius:4px;transition:width 0.5s ease,background 0.3s;background:#214761}
+
+/* ===== 板块准确率条 ===== */
+.section-scores{display:flex;gap:8px;margin-top:12px}
+.section-score{flex:1;background:#fff;border:1px solid #e8ecf0;border-radius:6px;padding:8px 10px;text-align:center;transition:border-color 0.3s}
+.section-score.done{border-color:#d0dce2}
+.section-score .ss-label{font-size:10px;color:#999;margin-bottom:2px;letter-spacing:0.5px}
+.section-score .ss-val{font-size:18px;font-weight:700;color:#214761;transition:color 0.3s}
+.section-score .ss-val.good{color:#1a6b3a}
+.section-score .ss-val.bad{color:#BB3F3F}
+.section-score .ss-detail{font-size:10px;color:#bbb;margin-top:2px}
+.section-score.done .ss-detail{color:#999}
+
+/* Section */
+.section{padding:24px 24px 8px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #214761}
+.section-icon{width:36px;height:36px;border-radius:8px;background:#214761;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+.section-title{font-size:17px;font-weight:700;color:#214761;letter-spacing:0.5px}
+.section-sub{font-size:12px;color:#999;margin-top:2px}
+
+/* Quiz */
+.quiz{margin-bottom:16px;background:#fff;border:1px solid #e8ecf0;border-radius:8px;overflow:hidden;transition:box-shadow 0.2s}
+.quiz:hover{box-shadow:0 2px 12px rgba(33,71,97,0.08)}
+.quiz-num{background:#214761;color:#fff;font-size:13px;font-weight:600;padding:10px 16px;display:flex;align-items:center;gap:8px}
+.quiz-num .num-circle{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px}
+.quiz-body{padding:14px 16px 16px}
+.quiz-question{font-size:14px;font-weight:500;color:#333;margin-bottom:12px;line-height:1.8}
+
+/* Options */
+.quiz-options{list-style:none;padding:0}
+.quiz-options li{font-size:13px;padding:10px 14px;margin-bottom:6px;border:1.5px solid #e8ecf0;border-radius:6px;color:#555;line-height:1.7;cursor:pointer;transition:all 0.2s;position:relative;user-select:none}
+.quiz-options li:hover{border-color:#214761;background:#f8f9fb}
+.quiz-options li.selected{border-color:#214761;background:#eef3f7}
+.quiz-options li.correct{border-color:#1a6b3a;background:#e6f4ea;color:#1a6b3a;font-weight:500}
+.quiz-options li.wrong{border-color:#BB3F3F;background:#fce8e8;color:#BB3F3F}
+.quiz-options li.disabled{pointer-events:none;opacity:0.7}
+.quiz-options li.correct.disabled{opacity:1}
+
+/* Result badge */
+.result-badge{display:none;margin-top:10px;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:600;align-items:center;gap:6px}
+.result-badge.show{display:flex}
+.result-badge.right{background:#e6f4ea;color:#1a6b3a;border:1px solid #a8dab5}
+.result-badge.fail{background:#fce8e8;color:#BB3F3F;border:1px solid #f0b0b0}
+.result-icon{font-size:18px}
+
+/* Answer area */
+.quiz-answer{margin-top:10px;padding:12px 14px;border-radius:6px;display:none;border-left:3px solid #CB7723;background:#fffbf5}
+.quiz-answer.show{display:block}
+.answer-tag{display:inline-block;background:#CB7723;color:#fff;font-size:11px;font-weight:600;padding:2px 10px;border-radius:10px;margin-right:8px}
+.answer-text{font-size:13px;color:#555;line-height:1.8}
+.answer-text strong{color:#214761}
+
+/* Confirm button for multi-select */
+.confirm-btn{display:none;background:#214761;color:#fff;font-size:13px;padding:8px 20px;border-radius:4px;cursor:pointer;margin-top:10px;border:none;letter-spacing:0.5px;font-weight:500}
+.confirm-btn:hover{background:#1a3a50}
+.confirm-btn.show{display:inline-block}
+
+/* Footer */
+.footer{background:#214761;padding:28px 24px;text-align:center;color:rgba(255,255,255,0.6)}
+.footer h3{font-size:15px;color:#e8c78a;font-weight:600;letter-spacing:1px;margin-bottom:6px}
+.footer p{font-size:12px;margin-bottom:4px}
+.footer .sign{color:#CB7723;font-size:13px;margin-top:12px;letter-spacing:1px}
+.footer .tip{font-size:11px;color:rgba(255,255,255,0.4);margin-top:16px;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px}
+
+/* ===== 完成总结面板 ===== */
+.summary-panel{display:none;margin:16px 24px;background:linear-gradient(135deg,#214761,#1a3a50);border-radius:12px;padding:24px;color:#fff;text-align:center}
+.summary-panel.show{display:block}
+.summary-panel h2{font-size:18px;margin-bottom:16px;color:#e8c78a;letter-spacing:1px}
+.summary-grid{display:flex;justify-content:center;gap:20px;margin-bottom:16px}
+.summary-item{text-align:center}
+.summary-item .sv{font-size:28px;font-weight:700}
+.summary-item .sv.green{color:#7ddf8e}
+.summary-item .sv.red{color:#f0b0b0}
+.summary-item .sv.orange{color:#e8c78a}
+.summary-item .sl{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px}
+.summary-msg{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.8;margin-top:8px}
+.summary-sections{display:flex;gap:8px;margin-top:16px;justify-content:center}
+.summary-sec{text-align:center;background:rgba(255,255,255,0.1);border-radius:8px;padding:10px 16px;min-width:80px}
+.summary-sec .ssv{font-size:20px;font-weight:700}
+.summary-sec .ssl{font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">上岸资料整理 · 法规系列</div>
+  <h1>建筑法规基础三件套</h1>
+  <div class="sub">真题强化训练 · 互动版</div>
+</div>
+
+<!-- ===== 总分面板 ===== -->
+<div class="total-panel">
+  <div class="total-top">
+    <div class="total-label">答题进度 <strong id="progress-text">0 / 15</strong></div>
+    <div class="total-big"><span id="correct-count">0</span><span> 正确</span></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="section-scores">
+    <div class="section-score" id="ss-1">
+      <div class="ss-label">法律体系</div>
+      <div class="ss-val" id="ssv-1">-</div>
+      <div class="ss-detail">5题</div>
+    </div>
+    <div class="section-score" id="ss-2">
+      <div class="ss-label">法的形式</div>
+      <div class="ss-val" id="ssv-2">-</div>
+      <div class="ss-detail">5题</div>
+    </div>
+    <div class="section-score" id="ss-3">
+      <div class="ss-label">效力层级</div>
+      <div class="ss-val" id="ssv-3">-</div>
+      <div class="ss-detail">5题</div>
+    </div>
+    <div class="section-score">
+      <div class="ss-label">准确率</div>
+      <div class="ss-val" id="ssv-total">0%</div>
+      <div class="ss-detail">总计</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 一、法律体系基本框架 ==================== -->
+<div class="section" data-section="1">
+  <div class="section-header">
+    <div class="section-icon">&#9878;</div>
+    <div>
+      <div class="section-title">一、法律体系基本框架</div>
+      <div class="section-sub">宪法及相关法 · 民商法 · 行政法 · 经济法 · 社会法 · 刑法 · 诉讼与非诉讼程序法</div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="A" data-section="1">
+    <div class="quiz-num"><span class="num-circle">1</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">根据我国法律体系，下列法律中属于经济法部门的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.《审计法》</li>
+        <li data-key="B">B.《招标投标法》</li>
+        <li data-key="C">C.《节约能源法》</li>
+        <li data-key="D">D.《环境保护法》</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>A</strong>。审计法属于经济法部门。B招标投标法、C节约能源法、D环境保护法均属于行政法部门。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="1">
+    <div class="quiz-num"><span class="num-circle">2</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">关于我国法律体系中各部门法划分的说法，正确的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.《建筑法》属于经济法部门</li>
+        <li data-key="B">B.《公司法》属于民商法部门</li>
+        <li data-key="C">C.《劳动合同法》属于行政法部门</li>
+        <li data-key="D">D.《仲裁法》属于社会法部门</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。公司法属于民商法部门。A建筑法属于行政法；C劳动合同法属于社会法；D仲裁法属于诉讼与非诉讼程序法。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="multi" data-answer="ACD" data-section="1">
+    <div class="quiz-num"><span class="num-circle">3</span> 多选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">下列法律中，属于社会法部门的有（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.《残疾人保障法》</li>
+        <li data-key="B">B.《矿山安全法》</li>
+        <li data-key="C">C.《劳动法》</li>
+        <li data-key="D">D.《妇女权益保障法》</li>
+        <li data-key="E">E.《安全生产法》</li>
+      </ul>
+      <button class="confirm-btn">确认提交</button>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>ACD</strong>。残疾人保障法、劳动法、妇女权益保障法属于社会法。B矿山安全法和E安全生产法属于行政法部门。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="C" data-section="1">
+    <div class="quiz-num"><span class="num-circle">4</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">《民事诉讼法》属于我国法律体系中的（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.行政法部门</li>
+        <li data-key="B">B.社会法部门</li>
+        <li data-key="C">C.诉讼与非诉讼程序法部门</li>
+        <li data-key="D">D.民商法部门</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>C</strong>。民事诉讼法属于诉讼与非诉讼程序法部门，该部门还包括刑事诉讼法、行政诉讼法和仲裁法等。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="multi" data-answer="ABCD" data-section="1">
+    <div class="quiz-num"><span class="num-circle">5</span> 多选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">我国法律体系包括的部门法有（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.宪法及相关法</li>
+        <li data-key="B">B.民法商法</li>
+        <li data-key="C">C.经济法</li>
+        <li data-key="D">D.社会法</li>
+        <li data-key="E">E.军事法</li>
+      </ul>
+      <button class="confirm-btn">确认提交</button>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>ABCD</strong>。我国法律体系分为七个部门：宪法及相关法、民法商法、行政法、经济法、社会法、刑法、诉讼与非诉讼程序法。军事法不属于标准七部门划分。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 二、法的形式 ==================== -->
+<div class="section" data-section="2">
+  <div class="section-header">
+    <div class="section-icon">&#9874;</div>
+    <div>
+      <div class="section-title">二、法的形式</div>
+      <div class="section-sub">宪法 · 法律 · 行政法规 · 地方性法规 · 行政规章 · 国际条约 · 自治条例</div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="D" data-section="2">
+    <div class="quiz-num"><span class="num-circle">6</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">下列法的形式中，效力等级最高的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.法律</li>
+        <li data-key="B">B.行政法规</li>
+        <li data-key="C">C.地方性法规</li>
+        <li data-key="D">D.宪法</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>D</strong>。宪法具有最高的法律效力，一切法律、行政法规、地方性法规等都不得同宪法相抵触。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="2">
+    <div class="quiz-num"><span class="num-circle">7</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">关于法的形式，下列说法正确的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.行政法规由全国人民代表大会制定</li>
+        <li data-key="B">B.部门规章由国务院各部委制定</li>
+        <li data-key="C">C.地方性法规由省级人民政府制定</li>
+        <li data-key="D">D.法律由国务院制定</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。部门规章由国务院各部委制定。A行政法规由国务院制定；C地方性法规由地方人大及其常委会制定；D法律由全国人大及其常委会制定。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="2">
+    <div class="quiz-num"><span class="num-circle">8</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">《建设工程质量管理条例》属于（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.法律</li>
+        <li data-key="B">B.行政法规</li>
+        <li data-key="C">C.地方性法规</li>
+        <li data-key="D">D.部门规章</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。以"条例"形式发布、由国务院制定的规范性文件属于行政法规。法律由全国人大制定，命名多为"XX法"。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="multi" data-answer="ABE" data-section="2">
+    <div class="quiz-num"><span class="num-circle">9</span> 多选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">下列规范性文件中，属于行政法规的有（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.《建设工程安全生产管理条例》</li>
+        <li data-key="B">B.《招标投标法实施条例》</li>
+        <li data-key="C">C.《建筑法》</li>
+        <li data-key="D">D.《城市房地产管理法》</li>
+        <li data-key="E">E.《安全生产许可证条例》</li>
+      </ul>
+      <button class="confirm-btn">确认提交</button>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>ABE</strong>。以"条例"命名且由国务院制定的是行政法规。C建筑法、D城市房地产管理法由全国人大常委会制定，属于法律。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="2">
+    <div class="quiz-num"><span class="num-circle">10</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">下列关于地方性法规的说法，正确的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.省级人民政府有权制定地方性法规</li>
+        <li data-key="B">B.自治州的人民代表大会及其常委会有权制定自治条例和单行条例</li>
+        <li data-key="C">C.地方政府规章的效力高于地方性法规</li>
+        <li data-key="D">D.设区的市的人民政府有权制定地方性法规</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。自治州人大及其常委会可以制定自治条例和单行条例。A应由地方人大制定；C地方政府规章效力低于地方性法规；D应由设区的市的人大及其常委会制定。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== 三、法的效力层级 ==================== -->
+<div class="section" data-section="3">
+  <div class="section-header">
+    <div class="section-icon">&#9881;</div>
+    <div>
+      <div class="section-title">三、法的效力层级</div>
+      <div class="section-sub">宪法至上 · 法律＞行政法规＞地方性法规 · 新法优于旧法 · 特别法优于一般法</div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="C" data-section="3">
+    <div class="quiz-num"><span class="num-circle">11</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">关于法的效力层级，下列说法正确的是（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.行政法规的效力高于法律</li>
+        <li data-key="B">B.地方性法规的效力高于部门规章</li>
+        <li data-key="C">C.法律的效力高于行政法规</li>
+        <li data-key="D">D.部门规章的效力高于地方性法规</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>C</strong>。效力层级：宪法＞法律＞行政法规＞地方性法规。B和D中部门规章与地方性法规之间不具有上下级关系，由国务院裁决。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="C" data-section="3">
+    <div class="quiz-num"><span class="num-circle">12</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">当地方性法规与部门规章之间对同一事项的规定不一致时，由（　）裁决。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.全国人民代表大会</li>
+        <li data-key="B">B.全国人民代表大会常务委员会</li>
+        <li data-key="C">C.国务院</li>
+        <li data-key="D">D.最高人民法院</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>C</strong>。地方性法规与部门规章之间对同一事项规定不一致时，由国务院提出意见：国务院认为应当适用地方性法规的，直接决定适用地方性法规；认为应当适用部门规章的，提请全国人大常委会裁决。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="3">
+    <div class="quiz-num"><span class="num-circle">13</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">同一机关制定的法律、行政法规、地方性法规、自治条例和单行条例、规章，特别规定与一般规定不一致的，适用（　）；新的规定与旧的规定不一致的，适用（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.一般规定；旧的规定</li>
+        <li data-key="B">B.特别规定；新的规定</li>
+        <li data-key="C">C.一般规定；新的规定</li>
+        <li data-key="D">D.特别规定；旧的规定</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。同一机关制定的法律规范冲突时：特别规定优于一般规定，新的规定优于旧的规定。口诀："特别优于一般，新优于旧"。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="single" data-answer="B" data-section="3">
+    <div class="quiz-num"><span class="num-circle">14</span> 单选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">根据《立法法》，法律的规定与行政法规的规定不一致时，应当适用（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.行政法规</li>
+        <li data-key="B">B.法律</li>
+        <li data-key="C">C.由国务院裁决</li>
+        <li data-key="D">D.由全国人大常委会裁决</li>
+      </ul>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>B</strong>。法律的效力高于行政法规，上位法优于下位法，直接适用法律，不需要裁决。裁决机制仅在效力层级相同或无上下级关系的规范之间适用。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz" data-type="multi" data-answer="ABC" data-section="3">
+    <div class="quiz-num"><span class="num-circle">15</span> 多选题</div>
+    <div class="quiz-body">
+      <div class="quiz-question">关于法的效力层级的说法，正确的有（　）。</div>
+      <ul class="quiz-options">
+        <li data-key="A">A.宪法具有最高的法律效力</li>
+        <li data-key="B">B.法律的效力高于行政法规</li>
+        <li data-key="C">C.行政法规的效力高于地方性法规</li>
+        <li data-key="D">D.部门规章的效力高于地方政府规章</li>
+        <li data-key="E">E.自治条例的效力低于地方性法规</li>
+      </ul>
+      <button class="confirm-btn">确认提交</button>
+      <div class="result-badge"></div>
+      <div class="quiz-answer">
+        <span class="answer-tag">解析</span>
+        <div class="answer-text"><strong>ABC</strong>。D部门规章与地方政府规章之间效力同等，由国务院裁决；E自治条例依法对法律和行政法规作变通规定的，在本自治地方适用自治条例的规定。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 完成总结面板 ===== -->
+<div class="summary-panel" id="summary-panel">
+  <h2>训练完成</h2>
+  <div class="summary-grid">
+    <div class="summary-item"><div class="sv green" id="sum-correct">0</div><div class="sl">正确</div></div>
+    <div class="summary-item"><div class="sv red" id="sum-wrong">0</div><div class="sl">错误</div></div>
+    <div class="summary-item"><div class="sv orange" id="sum-rate">0%</div><div class="sl">准确率</div></div>
+  </div>
+  <div class="summary-sections">
+    <div class="summary-sec"><div class="ssv" id="sum-s1">-</div><div class="ssl">法律体系</div></div>
+    <div class="summary-sec"><div class="ssv" id="sum-s2">-</div><div class="ssl">法的形式</div></div>
+    <div class="summary-sec"><div class="ssv" id="sum-s3">-</div><div class="ssl">效力层级</div></div>
+  </div>
+  <div class="summary-msg" id="sum-msg"></div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <h3>建筑法规基础三件套 · 真题训练</h3>
+  <p>上岸资料整理｜法规系列</p>
+  <p>共 15 题 · 单选 10 题 / 多选 5 题</p>
+  <div class="sign">— 铎沐建筑 · 文件资料 —</div>
+  <div class="tip">单选点击即判定 · 多选勾选后点击确认提交 · 顶部面板实时统计</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var total = 15;
+  var answered = 0;
+  var correct = 0;
+  // 板块计分：sectionStats[1] = {answered:0, correct:0}
+  var sectionStats = {1:{answered:0,correct:0}, 2:{answered:0,correct:0}, 3:{answered:0,correct:0}};
+
+  function updatePanel(){
+    // 进度
+    document.getElementById('progress-text').textContent = answered + ' / ' + total;
+    document.getElementById('correct-count').textContent = correct;
+
+    // 进度条
+    var pct = Math.round(answered / total * 100);
+    var fill = document.getElementById('progress-fill');
+    fill.style.width = pct + '%';
+    // 进度条颜色随准确率变化
+    var rate = answered > 0 ? Math.round(correct / answered * 100) : 0;
+    if(rate >= 80) fill.style.background = '#1a6b3a';
+    else if(rate >= 60) fill.style.background = '#CB7723';
+    else if(answered > 0) fill.style.background = '#BB3F3F';
+    else fill.style.background = '#214761';
+
+    // 总准确率
+    var totalRateEl = document.getElementById('ssv-total');
+    totalRateEl.textContent = answered > 0 ? rate + '%' : '0%';
+    totalRateEl.className = 'ss-val' + (answered > 0 ? (rate >= 80 ? ' good' : rate >= 60 ? '' : ' bad') : '');
+
+    // 各板块
+    for(var s = 1; s <= 3; s++){
+      var st = sectionStats[s];
+      var el = document.getElementById('ssv-' + s);
+      var panel = document.getElementById('ss-' + s);
+      if(st.answered === 0){
+        el.textContent = '-';
+        el.className = 'ss-val';
+      } else {
+        var sr = Math.round(st.correct / st.answered * 100);
+        el.textContent = st.correct + '/' + st.answered;
+        el.className = 'ss-val' + (sr >= 80 ? ' good' : sr >= 60 ? '' : ' bad');
+        panel.classList.add('done');
+      }
+    }
+
+    // 全部答完后显示总结
+    if(answered === total){
+      showSummary();
+    }
+  }
+
+  function showSummary(){
+    var panel = document.getElementById('summary-panel');
+    panel.classList.add('show');
+
+    var wrong = total - correct;
+    var rate = Math.round(correct / total * 100);
+    document.getElementById('sum-correct').textContent = correct;
+    document.getElementById('sum-wrong').textContent = wrong;
+    document.getElementById('sum-rate').textContent = rate + '%';
+
+    for(var s = 1; s <= 3; s++){
+      var st = sectionStats[s];
+      var el = document.getElementById('sum-s' + s);
+      el.textContent = st.correct + '/' + st.answered;
+    }
+
+    // 评语
+    var msg = '';
+    if(rate === 100) msg = '全部正确，法规基础扎实，继续保持！';
+    else if(rate >= 80) msg = '准确率优秀，错题建议回顾巩固。';
+    else if(rate >= 60) msg = '及格线以上，部分知识点需要加强，重点关注错题。';
+    else msg = '准确率偏低，建议重新学习三件套知识点后再练一轮。';
+    document.getElementById('sum-msg').textContent = msg;
+
+    // 滚动到总结面板
+    setTimeout(function(){
+      panel.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 300);
+  }
+
+  function showResult(quiz, isCorrect){
+    var badge = quiz.querySelector('.result-badge');
+    var answer = quiz.querySelector('.quiz-answer');
+
+    if(isCorrect){
+      badge.className = 'result-badge show right';
+      badge.innerHTML = '<span class="result-icon">&#10003;</span> 回答正确';
+    } else {
+      badge.className = 'result-badge show fail';
+      badge.innerHTML = '<span class="result-icon">&#10007;</span> 回答错误';
+    }
+    answer.classList.add('show');
+  }
+
+  function onAnswer(quiz, isCorrect){
+    answered++;
+    if(isCorrect) correct++;
+
+    var sec = quiz.getAttribute('data-section');
+    sectionStats[sec].answered++;
+    if(isCorrect) sectionStats[sec].correct++;
+
+    updatePanel();
+  }
+
+  // ===== 单选题逻辑 =====
+  document.querySelectorAll('.quiz[data-type="single"]').forEach(function(quiz){
+    var options = quiz.querySelectorAll('.quiz-options li');
+    var done = false;
+
+    options.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        if(done) return;
+        done = true;
+
+        var key = this.getAttribute('data-key');
+        var correctKey = quiz.getAttribute('data-answer');
+        var isCorrect = (key === correctKey);
+
+        options.forEach(function(o){
+          var k = o.getAttribute('data-key');
+          if(k === correctKey){
+            o.classList.add('correct');
+          } else {
+            o.classList.add('disabled');
+          }
+        });
+
+        if(!isCorrect){
+          this.classList.remove('disabled');
+          this.classList.add('wrong');
+        }
+
+        showResult(quiz, isCorrect);
+        onAnswer(quiz, isCorrect);
+      });
+    });
+  });
+
+  // ===== 多选题逻辑 =====
+  document.querySelectorAll('.quiz[data-type="multi"]').forEach(function(quiz){
+    var options = quiz.querySelectorAll('.quiz-options li');
+    var confirmBtn = quiz.querySelector('.confirm-btn');
+    var selected = [];
+    var done = false;
+
+    options.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        if(done) return;
+
+        var key = this.getAttribute('data-key');
+        var idx = selected.indexOf(key);
+
+        if(idx > -1){
+          selected.splice(idx, 1);
+          this.classList.remove('selected');
+        } else {
+          selected.push(key);
+          this.classList.add('selected');
+        }
+
+        if(selected.length > 0) confirmBtn.classList.add('show');
+        else confirmBtn.classList.remove('show');
+      });
+    });
+
+    confirmBtn.addEventListener('click', function(){
+      if(done || selected.length === 0) return;
+      done = true;
+      confirmBtn.style.display = 'none';
+
+      var correctAnswer = quiz.getAttribute('data-answer').split('');
+      var isCorrect = selected.length === correctAnswer.length &&
+                      correctAnswer.every(function(k){ return selected.indexOf(k) > -1; });
+
+      options.forEach(function(o){
+        var k = o.getAttribute('data-key');
+        if(correctAnswer.indexOf(k) > -1){
+          o.classList.add('correct');
+        } else if(selected.indexOf(k) > -1){
+          o.classList.add('wrong');
+        }
+        o.classList.add('disabled');
+        o.classList.remove('selected');
+      });
+
+      showResult(quiz, isCorrect);
+      onAnswer(quiz, isCorrect);
+    });
+  });
+})();
+</script>
+</body>
+</html>
