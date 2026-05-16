@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法人制度-通关卡.html</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    background: #f0f2f5;
+    color: #333;
+    line-height: 1.8;
+  }
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 0;
+  }
+
+  /* Hero Banner */
+  .hero {
+    background: linear-gradient(135deg, #214761 0%, #1a3a50 50%, #14303f 100%);
+    padding: 50px 30px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "🏛";
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 60px;
+    opacity: 0.08;
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    backdrop-filter: blur(4px);
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, #CB7723, #e0993d, #CB7723);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 8px;
+  }
+
+  /* TOC */
+  .toc {
+    background: #faf8f5;
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid #eee;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #214761;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .toc-title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background: #CB7723;
+    border-radius: 2px;
+  }
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .toc-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #555;
+    padding: 8px 12px;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 3px solid #CB7723;
+  }
+  .toc-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #214761;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Section */
+  .section {
+    padding: 30px 24px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-icon.s1 { background: #e8f4f8; }
+  .section-icon.s2 { background: #fdf3e7; }
+  .section-icon.s3 { background: #f3e8fd; }
+  .section-icon.s4 { background: #fde8e8; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #214761;
+  }
+  .section-sub {
+    font-size: 12px;
+    color: #999;
+    margin-top: 2px;
+  }
+
+  /* Knowledge Card */
+  .k-card {
+    background: #fafbfc;
+    border-radius: 12px;
+    padding: 18px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #f0f0f0;
+  }
+  .k-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #214761;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .k-card h3 .dot {
+    width: 6px;
+    height: 6px;
+    background: #CB7723;
+    border-radius: 50%;
+  }
+  .k-card p, .k-card li {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.9;
+  }
+  .k-card ul {
+    padding-left: 16px;
+    margin-top: 6px;
+  }
+  .k-card li {
+    margin-bottom: 4px;
+  }
+
+  /* Highlight Box */
+  .highlight {
+    background: linear-gradient(135deg, #fdf3e7, #fce8c8);
+    border-left: 3px solid #CB7723;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #8b5e14;
+    font-weight: 600;
+  }
+  .highlight strong {
+    color: #5a3a00;
+  }
+
+  /* Table */
+  .k-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #d0dce2;
+    line-height: 1.7;
+  }
+  .k-table th {
+    background: #214761;
+    color: #fff;
+    padding: 12px 14px;
+    font-weight: 700;
+    text-align: left;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  .k-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #e8eef2;
+    color: #444;
+    vertical-align: top;
+  }
+  .k-table tr:last-child td {
+    border-bottom: none;
+  }
+  .k-table tr:nth-child(even) {
+    background: #fafafa;
+  }
+  .k-table .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .tag-high { background: #fde8e8; color: #BB3F3F; }
+  .tag-mid { background: #e0eef6; color: #214761; }
+  .tag-low { background: #e8fde8; color: #1e8449; }
+
+  /* Quiz Section */
+  .quiz-section {
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d0dce2;
+  }
+  .quiz-header {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 14px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #214761;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid #d0dce2;
+  }
+  .quiz-header .emoji { font-size: 16px; }
+  .quiz-item {
+    padding: 16px;
+    border-bottom: 1px dashed #eee;
+  }
+  .quiz-item:last-child {
+    border-bottom: none;
+  }
+  .quiz-num {
+    display: inline-block;
+    background: #214761;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .quiz-q {
+    font-size: 13.5px;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.8;
+  }
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .quiz-opt {
+    font-size: 13px;
+    color: #555;
+    padding: 6px 10px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #eee;
+  }
+  .quiz-opt.correct {
+    background: #e0efea;
+    border-color: #27ae60;
+    color: #1a6b3a;
+    font-weight: 700;
+  }
+  .quiz-opt.wrong {
+    text-decoration: line-through;
+    color: #bbb;
+  }
+  .quiz-answer {
+    background: #f0f7ff;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    color: #2c3e50;
+    line-height: 1.9;
+  }
+  .quiz-answer strong {
+    color: #214761;
+  }
+  .quiz-answer .label {
+    display: inline-block;
+    background: #CB7723;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+
+  /* Divider */
+  .divider {
+    text-align: center;
+    margin: 30px 0 20px;
+    position: relative;
+  }
+  .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #eee;
+  }
+  .divider span {
+    background: #fff;
+    padding: 0 16px;
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Footer */
+  .footer {
+    background: #214761;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 30px 24px;
+    font-size: 12px;
+    line-height: 2;
+  }
+  .footer strong {
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* Star Tip */
+  .star-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12.5px;
+    color: #666;
+  }
+  .star-tip .star {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* Flow diagram */
+  .flow-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+    font-size: 12px;
+  }
+  .flow-item {
+    background: #e8f4f8;
+    color: #1a5276;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .flow-arrow {
+    color: #bbb;
+    font-size: 16px;
+  }
+
+  /* vs comparison */
+  .vs-box {
+    display: flex;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .vs-card {
+    flex: 1;
+    background: #fafbfc;
+    border: 1px solid #e8eef2;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 12.5px;
+    line-height: 1.8;
+    color: #555;
+  }
+  .vs-card .vs-title {
+    font-weight: 700;
+    color: #214761;
+    font-size: 13px;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #CB7723;
+  }
+  .vs-card .vs-title.orange { border-bottom-color: #CB7723; }
+  .vs-card .vs-title.blue { border-bottom-color: #214761; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<div class="hero">
+  <div class="hero-tag">📋 上岸资料整理 · 法规系列</div>
+  <h1>法人制度 · <span>全考点通关卡</span></h1>
+  <p>法人概述 · 成立条件 · 法人分类 · 项目经理部法律关系</p>
+  <p style="margin-top:12px;font-size:15px;opacity:0.9;">全考点通关卡 · 含经典真题精讲</p>
+</div>
+
+<!-- ==================== TOC ==================== -->
+<div class="toc">
+  <div class="toc-title">全文导航</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">一</span>法人的基本概念 —— 什么是法人？和自然人有什么区别？</li>
+    <li><span class="toc-num">二</span>法人的成立条件 —— 成立法人必须同时满足四个要件</li>
+    <li><span class="toc-num">三</span>法人的分类 —— 营利/非营利/特别法人三大类</li>
+    <li><span class="toc-num">四</span>法人在建设工程中的地位 —— 项目经理部为什么不是法人？</li>
+  </ul>
+</div>
+
+<!-- ==================== SECTION 1 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s1">🏛</div>
+    <div>
+      <div class="section-title">一、法人的基本概念</div>
+      <div class="section-sub">《民法典》法人制度核心</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>什么是法人</h3>
+    <p>法人，是指<strong>具有民事权利能力和民事行为能力</strong>，依法<strong>独立享有民事权利和承担民事义务</strong>的组织。法人不是"人"，而是一个<strong>组织</strong>，但它像自然人一样可以拥有财产、签合同、打官司。</p>
+  </div>
+
+  <div class="vs-box">
+    <div class="vs-card">
+      <div class="vs-title orange">自然人</div>
+      <p>基于出生而取得民事主体资格的个人<br>权利能力始于出生、终于死亡<br>行为能力有年龄和精神状态限制</p>
+    </div>
+    <div class="vs-card">
+      <div class="vs-title blue">法人</div>
+      <p>依法成立、具有民事权利能力的<strong>组织</strong><br>权利能力始于法人成立、终于法人终止<br>行为能力通过法定代表人实现</p>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>法人的法定代表人</h3>
+    <p>法定代表人是依照法律或法人组织章程规定，<strong>代表法人行使职权的负责人</strong>。法定代表人以法人名义从事的民事活动，其法律后果由<strong>法人承受</strong>。</p>
+    <ul>
+      <li>法定代表人可以是<strong>董事长、执行董事或经理</strong></li>
+      <li>法定代表人变更不影响法人对外签订合同的效力</li>
+      <li>法人对法定代表人的职务行为承担<strong>民事责任</strong></li>
+    </ul>
+  </div>
+
+  <div class="highlight">
+    <strong>⚡ 高频考点提示：</strong>法人 ≠ 法定代表人。法人是组织，法定代表人是代表该组织行事的<strong>自然人</strong>。考试常考"法定代表人以法人名义签订合同，责任由谁承担"——答案永远是<strong>由法人承担</strong>。
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>判断技巧：</strong>看到"法人"就想到"组织"而非"个人"；看到"法定代表人"才是那个具体的自然人。<strong>"法人签字盖章"≠"法定代表人签字"，前者是组织行为，后者是个人代表行为。</strong></span>
+  </div>
+
+  <!-- Quiz 1 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>关于法人的说法，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.法人就是法定代表人</div>
+        <div class="quiz-opt correct">B.法人是具有民事权利能力和民事行为能力的组织</div>
+        <div class="quiz-opt">C.法人的民事权利能力与自然人完全相同</div>
+        <div class="quiz-opt">D.法人不具有独立承担民事责任的能力</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项错误，法人和法定代表人是两个概念——法人是组织，法定代表人是代表法人行事的自然人。B选项正确，法人具有民事权利能力和民事行为能力✅。C选项错误，法人享有民事权利能力的范围受到其<strong>性质、章程、经营范围</strong>等限制，与自然人不完全相同。D选项错误，法人能<strong>独立承担民事责任</strong>，这是法人的核心特征之一。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>法定代表人以法人名义从事民事活动，其法律后果由（　）承担。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.法定代表人个人</div>
+        <div class="quiz-opt">B.法人与法定代表人共同</div>
+        <div class="quiz-opt correct">C.法人</div>
+        <div class="quiz-opt">D.法人的上级主管单位</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>法定代表人以法人名义从事民事活动，其法律后果由<strong>法人承受</strong>✅。法定代表人是法人的代表机关，其职务行为的法律效果归属法人，不由个人承担。这是法人制度的基石性规定。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>下列主体中，属于法人的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.某施工企业的项目经理部</div>
+        <div class="quiz-opt correct">B.某建筑集团有限责任公司</div>
+        <div class="quiz-opt">C.某个体工商户</div>
+        <div class="quiz-opt">D.某合伙企业</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项项目经理部是施工企业内部的组织机构，不具有独立法人资格。B选项有限责任公司是依法成立的营利法人，具有独立法人资格✅。C选项个体工商户不是法人，是以个人或家庭财产承担无限责任的<strong>自然人主体</strong>。D选项合伙企业不具有法人资格，合伙人对合伙债务承担<strong>无限连带责任</strong>。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s2">📋</div>
+    <div>
+      <div class="section-title">二、法人的成立条件</div>
+      <div class="section-sub">四大要件缺一不可</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>法人成立的四个法定条件</h3>
+    <p>根据《民法典》规定，法人成立应当同时具备以下<strong>四个条件</strong>：</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:8%">序号</th>
+        <th style="width:28%">条件</th>
+        <th>具体要求</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>①</strong></td>
+        <td><strong>依法成立</strong><br><span class="tag tag-high">程序要件</span></td>
+        <td>法人必须依照法律规定的程序设立（如经工商行政管理部门登记）</td>
+      </tr>
+      <tr>
+        <td><strong>②</strong></td>
+        <td><strong>有自己的名称、组织机构、住所</strong><br><span class="tag tag-mid">组织要件</span></td>
+        <td>有独立的名称、固定的住所和健全的组织机构（如董事会、监事会等）</td>
+      </tr>
+      <tr>
+        <td><strong>③</strong></td>
+        <td><strong>有符合规定的财产或经费</strong><br><span class="tag tag-high">财产要件</span></td>
+        <td>法人拥有独立支配的财产或经费，是企业法人独立承担责任的基础</td>
+      </tr>
+      <tr>
+        <td><strong>④</strong></td>
+        <td><strong>能够独立承担民事责任</strong><br><span class="tag tag-high">责任要件</span></td>
+        <td>法人的责任独立于其成员和法定代表人，以法人财产为限承担责任</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 高频考点提示：</strong>"能够独立承担民事责任"是法人的<strong>核心特征</strong>。考试常以<strong>项目经理部、分公司、合伙企业</strong>为例考查"哪些不属于法人"——核心判断标准就是：<strong>能否独立承担民事责任</strong>。
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>记忆口诀：</strong><strong>"依法成立有名有财，独立担责最重要"</strong>——依法成立、有名称、有组织机构、有住所、有财产/经费、能独立担责。六个关键词，四个条件。</span>
+  </div>
+
+  <!-- Quiz 2 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>根据《民法典》，法人应当具备的条件不包括（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.依法成立</div>
+        <div class="quiz-opt">B.有自己的名称、组织机构、住所</div>
+        <div class="quiz-opt">C.有符合规定的财产或者经费</div>
+        <div class="quiz-opt correct">D.有固定的从业人员不少于50人</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>D</strong><br>
+        <strong>【解析】</strong>A、B、C均为法人成立的法定条件✅。D选项"有固定的从业人员不少于50人"不是法人成立的法定条件，《民法典》并未对法人从业人员数量作出统一规定。这是<strong>典型的"无中生有"干扰项</strong>。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>法人的核心特征是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.依法成立</div>
+        <div class="quiz-opt">B.有自己的名称和组织机构</div>
+        <div class="quiz-opt correct">C.能够独立承担民事责任</div>
+        <div class="quiz-opt">D.有符合规定的财产或者经费</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>虽然A、B、D都是法人成立的法定条件，但<strong>"能够独立承担民事责任"</strong>是法人区别于非法人组织（如合伙企业、个体工商户）的<strong>核心特征</strong>✅。法人以其全部财产独立承担责任，其成员仅以出资额为限承担责任（有限责任），而非法人组织往往需要承担无限或连带责任。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>下列关于法人财产的表述中，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.法人的财产归法定代表人个人所有</div>
+        <div class="quiz-opt">B.法人以其出资人的个人财产承担民事责任</div>
+        <div class="quiz-opt correct">C.法人以其全部财产独立承担民事责任</div>
+        <div class="quiz-opt">D.法人成立后可以不具有独立财产</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项错误，法人财产归<strong>法人本身</strong>所有，不归法定代表人个人。B选项错误，法人以<strong>法人自身的全部财产</strong>承担责任，而非出资人的个人财产（出资人仅以出资额为限承担有限责任）。C选项正确，法人以自己的全部财产独立承担民事责任✅。D选项错误，有符合规定的财产或经费是法人成立的必要条件。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 3 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s3">📂</div>
+    <div>
+      <div class="section-title">三、法人的分类</div>
+      <div class="section-sub">《民法典》三类法人划分</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>《民法典》三类法人</h3>
+    <p>《民法典》将法人分为<strong>三大类</strong>，各类法人的成立方式和责任承担规则不同：</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:18%">类别</th>
+        <th style="width:30%">典型代表</th>
+        <th>核心特征</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>营利法人</strong><br><span class="tag tag-high">考试重点</span></td>
+        <td>有限责任公司<br>股份有限公司<br>其他企业法人</td>
+        <td>以取得利润并分配给股东等出资人为目的；经工商行政管理部门登记成立；<strong>建设工程领域最常见的法人类型</strong></td>
+      </tr>
+      <tr>
+        <td><strong>非营利法人</strong><br><span class="tag tag-mid">常考</span></td>
+        <td>事业单位（如公立学校、医院）<br>社会团体（如行业协会）<br>基金会<br>社会服务机构</td>
+        <td>为公益或其他非营利目的而成立；不向出资人分配利润；依法登记设立</td>
+      </tr>
+      <tr>
+        <td><strong>特别法人</strong><br><span class="tag tag-low">偶尔考</span></td>
+        <td>机关法人（政府机关）<br>农村集体经济组织法人<br>城镇农村合作经济组织法人<br>基层群众性自治组织法人（村委会、居委会）</td>
+        <td>具有特殊性的法人类型，由法律直接规定；机关法人不需登记即可成立</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="flow-box">
+    <div class="flow-item">法人</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-item">营利法人</div>
+    <div class="flow-item">非营利法人</div>
+    <div class="flow-item">特别法人</div>
+  </div>
+
+  <div class="highlight">
+    <strong>⚡ 考试高频判断：</strong><br>
+    ① <strong>施工企业（有限责任公司/股份有限公司）→ 营利法人</strong>，这是建设工程领域最重要的法人类型<br>
+    ② <strong>设计院</strong>——需看性质：事业单位编制的属于非营利法人（事业单位），注册为企业法人的属于营利法人<br>
+    ③ <strong>合伙企业、个人独资企业</strong>——不是法人（非法人组织），不能独立承担责任<br>
+    ④ <strong>项目经理部</strong>——不是法人，是施工企业的内部机构
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>记忆口诀：</strong><strong>"营利分利润，非营利做公益，特别由法定"</strong>——营利法人目的是赚钱分给股东，非营利法人做公益不分红，特别法人（机关/村委会等）由法律直接规定设立。</span>
+  </div>
+
+  <!-- Quiz 3 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>下列组织中，属于营利法人的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.某市住房和城乡建设局</div>
+        <div class="quiz-opt">B.某建筑业协会</div>
+        <div class="quiz-opt correct">C.某建筑工程有限责任公司</div>
+        <div class="quiz-opt">D.某残疾人福利基金会</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项住建局属于<strong>特别法人</strong>（机关法人）。B选项建筑业协会属于<strong>非营利法人</strong>（社会团体）。C选项有限责任公司以取得利润并分配给出资人为目的，属于<strong>营利法人</strong>✅。D选项残疾人福利基金会属于<strong>非营利法人</strong>（基金会）。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>根据《民法典》规定，下列属于特别法人的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.某有限责任公司</div>
+        <div class="quiz-opt correct">B.某村民委员会</div>
+        <div class="quiz-opt">C.某行业协会</div>
+        <div class="quiz-opt">D.某慈善基金会</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项有限责任公司属于营利法人。B选项村民委员会属于<strong>特别法人</strong>（基层群众性自治组织法人）✅。C选项行业协会属于非营利法人（社会团体）。D选项慈善基金会属于非营利法人（基金会）。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>关于非营利法人的说法，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.非营利法人不能从事经营活动</div>
+        <div class="quiz-opt correct">B.非营利法人不以向出资人分配利润为目的</div>
+        <div class="quiz-opt">C.非营利法人包括有限责任公司</div>
+        <div class="quiz-opt">D.非营利法人不需要依法登记即可成立</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项错误，非营利法人<strong>可以从事经营活动</strong>（如医院可以提供有偿医疗服务），只是不以营利为目的、不向出资人分配利润。B选项正确，非营利法人的核心特征是<strong>不以向出资人、设立人分配利润为目的</strong>✅。C选项错误，有限责任公司属于营利法人。D选项错误，非营利法人一般需要依法登记设立。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4 ==================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon s4">🏗</div>
+    <div>
+      <div class="section-title">四、法人在建设工程中的地位</div>
+      <div class="section-sub">项目经理部 · 分公司 · 总公司与子公司</div>
+    </div>
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>项目经理部不是法人（必考）</h3>
+    <p>项目经理部是<strong>施工企业为完成某项具体工程施工任务</strong>而设立的<strong>非常设性的内部管理机构</strong>。</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:40%">对比维度</th>
+        <th>项目经理部</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>法人资格</td>
+        <td><strong>不具有</strong>独立法人资格</td>
+      </tr>
+      <tr>
+        <td>法律地位</td>
+        <td>施工企业的<strong>内部管理机构</strong></td>
+      </tr>
+      <tr>
+        <td>能否独立签约</td>
+        <td><strong>不能</strong>以自己名义对外签订合同</td>
+      </tr>
+      <tr>
+        <td>民事责任承担</td>
+        <td>项目经理部行为后果由<strong>施工企业（法人）承担</strong></td>
+      </tr>
+      <tr>
+        <td>存续时间</td>
+        <td>项目完成后<strong>自行解散</strong>，不具有永久存续性</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 超高频考点：</strong>"项目经理部"相关的法律问题<strong>几乎年年考</strong>，务必记住：<br>
+    ① 项目经理部 <strong>≠ 法人</strong>，不能独立承担民事责任<br>
+    ② 项目经理部的行为后果由<strong>施工企业（法人）承担</strong><br>
+    ③ 项目经理是<strong>法定代表人授权</strong>的代理人，不是法人本身
+  </div>
+
+  <div class="k-card">
+    <h3><span class="dot"></span>分公司 vs 子公司</h3>
+    <p>建设工程领域还常考<strong>分公司与子公司</strong>的法律地位区分：</p>
+  </div>
+
+  <table class="k-table">
+    <thead>
+      <tr>
+        <th style="width:25%">对比维度</th>
+        <th style="width:37%">分公司</th>
+        <th style="width:38%">子公司</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>法人资格</strong></td>
+        <td><strong>不具有</strong>独立法人资格<br><span class="tag tag-high">关键区别</span></td>
+        <td><strong>具有</strong>独立法人资格<br><span class="tag tag-low">独立法人</span></td>
+      </tr>
+      <tr>
+        <td><strong>法律地位</strong></td>
+        <td>总公司的分支机构</td>
+        <td>独立的法人实体</td>
+      </tr>
+      <tr>
+        <td><strong>民事责任</strong></td>
+        <td>由<strong>总公司</strong>承担</td>
+        <td>由<strong>子公司自己</strong>承担</td>
+      </tr>
+      <tr>
+        <td><strong>财产归属</strong></td>
+        <td>财产属于<strong>总公司</strong></td>
+        <td>财产属于<strong>子公司</strong></td>
+      </tr>
+      <tr>
+        <td><strong>设立程序</strong></td>
+        <td>设立登记即可</td>
+        <td>需要独立注册成立</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>⚡ 必考判断：</strong>分公司的债务由<strong>总公司承担</strong>（因为分公司不是法人）；子公司的债务由<strong>子公司自己承担</strong>（因为子公司是独立法人）。考试常问"某分公司签订的合同违约，应由谁承担责任"——答案是<strong>总公司</strong>。
+  </div>
+
+  <div class="star-tip">
+    <span class="star">💡</span>
+    <span><strong>终极判断法：</strong>凡是问"XX能不能独立承担责任"，就问"XX是不是法人"——是法人就能独立承担，不是法人就由设立它的法人承担。<strong>法人 = 独立担责 = 有名有财有组织。</strong></span>
+  </div>
+
+  <!-- Quiz 4 -->
+  <div class="quiz-section">
+    <div class="quiz-header"><span class="emoji">✏️</span> 配套精练 · 3题</div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">1</span>关于项目经理部的说法，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.项目经理部具有独立法人资格</div>
+        <div class="quiz-opt">B.项目经理部可以自己名义对外签订施工合同</div>
+        <div class="quiz-opt correct">C.项目经理部行为的法律后果由施工企业承担</div>
+        <div class="quiz-opt">D.项目经理部解散后不再承担任何责任，施工企业也不再承担</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>A选项错误，项目经理部是施工企业内部的管理机构，<strong>不具有独立法人资格</strong>。B选项错误，项目经理部不能以自己名义对外签约，应以施工企业名义。C选项正确，项目经理部行为的法律后果由<strong>施工企业（法人）承担</strong>✅。D选项错误，项目经理部存续期间产生的法律责任由施工企业承担，不会因为项目部解散而消灭。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">2</span>某施工企业的分公司以自己名义对外签订了材料采购合同，该合同产生的法律责任应由（　）承担。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.分公司</div>
+        <div class="quiz-opt">B.分公司和总公司共同</div>
+        <div class="quiz-opt correct">C.总公司</div>
+        <div class="quiz-opt">D.分公司经理</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>C</strong><br>
+        <strong>【解析】</strong>分公司<strong>不具有独立法人资格</strong>，是总公司的分支机构。分公司以自己名义对外签订合同产生的民事责任，最终由<strong>总公司承担</strong>✅。注意：虽由总公司承担责任，但司法实践中分公司也可作为诉讼当事人，判决先由分公司财产清偿，不足部分由总公司承担。
+      </div>
+    </div>
+    <div class="quiz-item">
+      <div class="quiz-q"><span class="quiz-num">3</span>关于子公司和分公司的说法，正确的是（　）。</div>
+      <div class="quiz-options">
+        <div class="quiz-opt">A.子公司不具有独立法人资格</div>
+        <div class="quiz-opt correct">B.子公司具有独立法人资格，能够独立承担民事责任</div>
+        <div class="quiz-opt">C.分公司的民事责任由子公司承担</div>
+        <div class="quiz-opt">D.子公司和分公司都具有独立法人资格</div>
+      </div>
+      <div class="quiz-answer">
+        <span class="label">答案</span><strong>B</strong><br>
+        <strong>【解析】</strong>A选项错误，子公司<strong>具有独立法人资格</strong>。B选项正确，子公司是独立法人，能够独立承担民事责任✅。C选项错误，分公司的民事责任由<strong>总公司</strong>承担，与子公司无关。D选项错误，分公司不具有独立法人资格，只有子公司才是独立法人。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <strong>📚 法人制度 · 通关卡</strong><br>
+  上岸资料整理｜法规系列<br>
+  配套12道经典试题 · 覆盖选择题核心考法<br><br>
+  <span style="font-size:11px;opacity:0.6;">— 铎沐建筑 · 文件资料 —</span>
+</div>
+
+</div>
+</body>
+</html>
